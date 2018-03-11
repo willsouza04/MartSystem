@@ -17,12 +17,12 @@ public class ListaProdutos implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
-	@Column(name = "id_produto")
-	private Long id_produto;
 
 	@Column(name = "id_pedido")
 	private Long id_pedido;
+	
+	@Column(name = "id_produto")
+	private Long id_produto;
 	
 	@Column(name = "quantidade")
 	private Long quantidades;
@@ -46,20 +46,20 @@ public class ListaProdutos implements Serializable {
 		this.id = id;
 	}
 
-	public Long getId_produto() {
-		return id_produto;
-	}
-
-	public void setId_produto(Long id_produto) {
-		this.id_produto = id_produto;
-	}
-
 	public Long getId_pedido() {
 		return id_pedido;
 	}
 
 	public void setId_pedido(Long id_pedido) {
 		this.id_pedido = id_pedido;
+	}
+
+	public Long getId_produto() {
+		return id_produto;
+	}
+
+	public void setId_produto(Long id_produto) {
+		this.id_produto = id_produto;
 	}
 
 	public Long getQuantidades() {
