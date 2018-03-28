@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.univel.api.model.ListaProdutos;
+import br.univel.api.model.Pedido;
+import br.univel.api.model.Produto;
 import br.univel.api.repository.ListaProdutosRepository;
 
 @RestController
@@ -16,7 +18,7 @@ public class ListaProdutoController {
 	
 	// Url: api/listaProduto/save?id_pedido=1&id_produto=1&quantidade=3
 	@RequestMapping("api/listaProduto/save")
-	public String save(@RequestParam("id_pedido") Long id_pedido, @RequestParam("id_produto") Long id_produto, 
+	public String save(@RequestParam("id_pedido") Pedido id_pedido, @RequestParam("id_produto") Produto id_produto, 
 			@RequestParam("quantidade") Long quantidade) {
 		try {
 			listaProdutoRepository.save(new ListaProdutos(id_produto, id_pedido, quantidade));

@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -18,8 +20,13 @@ public class Usuario implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@Column(name = "id_endereco")
-	private Long id_endereco;
+	@ManyToOne
+	@JoinColumn(name = "id_login")
+	private Login id_login;
+	
+	@ManyToOne
+	@JoinColumn(name = "id_endereco")
+	private Endereco id_endereco;
 	
 	@Column(name = "nome")
 	private String nome;
@@ -34,8 +41,9 @@ public class Usuario implements Serializable {
 		
 	}
 
-	public Usuario(Long id_endereco, String nome, String cpf, Long idade) {
+	public Usuario(Login id_login, Endereco id_endereco, String nome, String cpf, Long idade) {
 		super();
+		this.id_login = id_login;
 		this.id_endereco = id_endereco;
 		this.nome = nome;
 		this.cpf = cpf;
@@ -50,11 +58,19 @@ public class Usuario implements Serializable {
 		this.id = id;
 	}
 
-	public Long getId_endereco() {
+	public Login getId_login() {
+		return id_login;
+	}
+
+	public void setId_login(Login id_login) {
+		this.id_login = id_login;
+	}
+
+	public Endereco getId_endereco() {
 		return id_endereco;
 	}
 
-	public void setId_endereco(Long id_endereco) {
+	public void setId_endereco(Endereco id_endereco) {
 		this.id_endereco = id_endereco;
 	}
 

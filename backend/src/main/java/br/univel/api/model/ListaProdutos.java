@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -17,12 +19,14 @@ public class ListaProdutos implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-
-	@Column(name = "id_pedido")
-	private Long id_pedido;
 	
-	@Column(name = "id_produto")
-	private Long id_produto;
+	@ManyToOne
+	@JoinColumn(name = "id_pedido")
+	private Pedido id_pedido;
+
+	@ManyToOne 
+	@JoinColumn(name = "id_produto")
+	private Produto id_produto;
 	
 	@Column(name = "quantidade")
 	private Long quantidades;
@@ -31,7 +35,7 @@ public class ListaProdutos implements Serializable {
 		
 	}
 
-	public ListaProdutos(Long id_produto, Long id_pedido, Long quantidades) {
+	public ListaProdutos(Produto id_produto, Pedido id_pedido, Long quantidades) {
 		super();
 		this.id_produto = id_produto;
 		this.id_pedido = id_pedido;
@@ -46,19 +50,19 @@ public class ListaProdutos implements Serializable {
 		this.id = id;
 	}
 
-	public Long getId_pedido() {
+	public Pedido getId_pedido() {
 		return id_pedido;
 	}
 
-	public void setId_pedido(Long id_pedido) {
+	public void setId_pedido(Pedido id_pedido) {
 		this.id_pedido = id_pedido;
 	}
 
-	public Long getId_produto() {
+	public Produto getId_produto() {
 		return id_produto;
 	}
 
-	public void setId_produto(Long id_produto) {
+	public void setId_produto(Produto id_produto) {
 		this.id_produto = id_produto;
 	}
 
