@@ -11,9 +11,13 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 
 import { appRoutes } from './app.routes';
+import { MenuComponent } from './menu/menu.component';
+import { CadastroComponent } from './cadastro/cadastro.component';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MenuComponent,
+    CadastroComponent
   ],
   imports: [
     BrowserModule,
