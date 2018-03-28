@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -18,11 +20,13 @@ public class Pedido implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@Column(name = "id_mercado")
-	private Long id_mercado;
+	@ManyToOne
+	@JoinColumn(name = "id_mercado")
+	private Mercado id_mercado;
 	
-	@Column(name = "id_usuario")
-	private Long id_usuario;
+	@ManyToOne
+	@JoinColumn(name = "id_usuario")
+	private Usuario id_usuario;
 	
 	@Column(name = "valor_frete")
 	private double valor_frete;
@@ -34,7 +38,7 @@ public class Pedido implements Serializable {
 		
 	}
 
-	public Pedido(Long id_mercado, Long id_usuario, double valor_frete, double valor_total) {
+	public Pedido(Mercado id_mercado, Usuario id_usuario, double valor_frete, double valor_total) {
 		super();
 		this.id_mercado = id_mercado;
 		this.id_usuario = id_usuario;
@@ -50,19 +54,19 @@ public class Pedido implements Serializable {
 		this.id = id;
 	}
 
-	public Long getId_mercado() {
+	public Mercado getId_mercado() {
 		return id_mercado;
 	}
 
-	public void setId_mercado(Long id_mercado) {
+	public void setId_mercado(Mercado id_mercado) {
 		this.id_mercado = id_mercado;
 	}
 
-	public Long getId_usuario() {
+	public Usuario getId_usuario() {
 		return id_usuario;
 	}
 
-	public void setId_usuario(Long id_usuario) {
+	public void setId_usuario(Usuario id_usuario) {
 		this.id_usuario = id_usuario;
 	}
 

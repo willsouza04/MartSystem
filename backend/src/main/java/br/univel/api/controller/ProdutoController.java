@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.univel.api.model.Mercado;
 import br.univel.api.model.Produto;
 import br.univel.api.repository.ProdutoRepository;
 
@@ -16,7 +17,7 @@ public class ProdutoController {
 	
 	// Url: api/produto/save?id_mercado=1&nome=UmNomeAi&valor=31.65&estoque=300
 	@RequestMapping("api/produto/save")
-	public String save(@RequestParam("id_mercado") Long id_mercado, @RequestParam("nome") String nome,
+	public String save(@RequestParam("id_mercado") Mercado id_mercado, @RequestParam("nome") String nome,
 			@RequestParam("valor") double valor, @RequestParam("estoque") Long estoque) {
 		try {
 			produtoRepository.save(new Produto(id_mercado, nome, valor, estoque));

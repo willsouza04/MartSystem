@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -18,8 +20,9 @@ public class Produto implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@Column(name = "id_mercado")
-	private Long id_mercado;
+	@ManyToOne
+	@JoinColumn(name = "id_mercado")
+	private Mercado id_mercado;
 	
 	@Column(name = "nome")
 	private String nome;
@@ -34,7 +37,7 @@ public class Produto implements Serializable {
 		
 	}
 
-	public Produto(Long id_mercado, String nome, double valor, Long estoque) {
+	public Produto(Mercado id_mercado, String nome, double valor, Long estoque) {
 		super();
 		this.id_mercado = id_mercado;
 		this.nome = nome;
@@ -50,11 +53,11 @@ public class Produto implements Serializable {
 		this.id = id;
 	}
 
-	public Long getId_mercado() {
+	public Mercado getId_mercado() {
 		return id_mercado;
 	}
 
-	public void setId_mercado(Long id_mercado) {
+	public void setId_mercado(Mercado id_mercado) {
 		this.id_mercado = id_mercado;
 	}
 
