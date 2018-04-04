@@ -2,22 +2,27 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
-
 import { AppComponent } from './app.component';
 
+import { RouterModule } from '@angular/router';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-
 import { CollapseModule } from 'ngx-bootstrap/collapse';
-
 import { appRoutes } from './app.routes';
-import { MenuComponent } from './menu/menu.component';
-import { CadastroComponent } from './cadastro/cadastro.component';
+
+import { InicioComponent } from './inicio/inicio.component';
+import { MenuInicioComponent } from './menu-inicio/menu-inicio.component';
+import { HomeComponent } from './home/home.component';
+import { EntrarComponent } from './entrar/entrar.component';
+import { CadastrarComponent } from './cadastrar/cadastrar.component';
+
 @NgModule({
   declarations: [
     AppComponent,
-    MenuComponent,
-    CadastroComponent
+    InicioComponent,
+    MenuInicioComponent,
+    HomeComponent,
+    EntrarComponent,
+    CadastrarComponent
   ],
   imports: [
     BrowserModule,
