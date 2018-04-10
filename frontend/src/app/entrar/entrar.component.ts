@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { EntrarService } from './entrar.service';
 
 @Component({
   selector: 'app-entrar',
@@ -7,9 +9,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EntrarComponent implements OnInit {
 
-  constructor() { }
+	public id_login = 0;
+	public username = '';
+	public senha = '';
+	public tipo = '';
+	
+	constructor(
+		private router: Router,
+		private entrarService: EntrarService
+	) { }
 
-  ngOnInit() {
-  }
-
+	ngOnInit() {
+		
+	}
+	
+	public login(){
+		this.entrarService.findTipoByLogin(this.username, this.senha)
+			.subscribe(res => {
+				console.log(res);
+			  }, err => {
+				console.log("Error");
+			  }
+		);		
+	}
 }

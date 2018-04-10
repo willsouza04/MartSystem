@@ -1,6 +1,9 @@
 package br.univel.api.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,14 +18,28 @@ public class LoginController {
 	LoginRepository loginRepository;
 	
 	// Url: api/login/save?usuario=wfdsouza&senha=35795128&tipo=usuario
-		@RequestMapping("api/login/save")
-		public String save(@RequestParam("usuario") String usuario, @RequestParam("senha") String senha,
-				@RequestParam("tipo") String tipo) {
-			try {
-				loginRepository.save(new Login(usuario, senha, tipo));
-				return "Done";
-			} catch (Exception error) {
-				return "Error";
-			}
+	@CrossOrigin(origins = "*")
+	@RequestMapping("api/login/save")
+	public String save(@RequestParam("usuario") String usuario, @RequestParam("senha") String senha,
+			@RequestParam("tipo") String tipo) {
+		try {
+			loginRepository.save(new Login(usuario, senha, tipo));
+			return "Done";
+		} catch (Exception error) {
+			return "Error";
 		}
+	}
+	
+	// Url: api/login/findTipoByLogin?username=wfdsouza&senha=35795128
+	@CrossOrigin(origins = "*")
+	@RequestMapping("api/login/findTipoByLogin")
+	public String findTipoByLogin(@RequestParam("username") String username,
+			@RequestParam("senha") String senha){
+		try {
+			List<String> tipo = loginRepository.findTipoByLogin(username, senha);
+			return tipo.get(0);
+		} catch (Exception error) {
+			return "Error";
+		}
+	}
 }

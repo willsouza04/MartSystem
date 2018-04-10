@@ -9,22 +9,26 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { appRoutes } from './app.routes';
 
-import { InicioComponent } from './inicio/inicio.component';
+import { HomeInicioComponent } from './home-inicio/home-inicio.component';
 import { MenuInicioComponent } from './menu-inicio/menu-inicio.component';
-import { HomeComponent } from './home/home.component';
 import { EntrarComponent } from './entrar/entrar.component';
 import { CadastrarComponent } from './cadastrar/cadastrar.component';
 import { MercadoComponent } from './mercado/mercado.component';
+import { MenuMercadoComponent } from './menu-mercado/menu-mercado.component';
+import { MenuUsuarioComponent } from './menu-usuario/menu-usuario.component';
+
+import { EntrarService } from './entrar/entrar.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    InicioComponent,
+    HomeInicioComponent,
     MenuInicioComponent,
-    HomeComponent,
     EntrarComponent,
     CadastrarComponent,
-    MercadoComponent
+    MercadoComponent,
+    MenuMercadoComponent,
+    MenuUsuarioComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +41,7 @@ import { MercadoComponent } from './mercado/mercado.component';
     BsDropdownModule.forRoot(),
     CollapseModule.forRoot()
   ],
-  providers: [],
+  providers: [EntrarService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

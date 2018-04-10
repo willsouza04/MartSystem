@@ -1,4 +1,11 @@
 <style>
+  .jumbotron-titulo {
+      background-color:#708090;
+      color: #ffffff;
+      padding-top: 80px;
+	  padding-bottom: 30px;
+	  font-size: 60px;
+  }
   .navbar {
       margin-bottom: 0;
       background-color: #303030;
@@ -34,15 +41,12 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a href=""><span class="glyphicon glyphicon-education logo-nav"></span></a>
+        <a><span class="glyphicon glyphicon-education logo-nav"></span></a>
       </div>
       <div class="navbar-collapse collapse" [collapse]="!isCollapsed">
         <ul class="nav navbar-nav navbar-right">
           <li [ngClass]="{active: activeRoute('/home')}">
             <a href="home" (click)="isCollapsed = !isCollapsed">HOME</a>
-          </li>
-          <li [ngClass]="{active: activeRoute('/mercado')}">
-            <a href="mercado" (click)="isCollapsed = !isCollapsed">MERCADO</a>
           </li>
           <li [ngClass]="{active: activeRoute('/entrar')}">
             <a href="entrar" (click)="isCollapsed = !isCollapsed">ENTRAR</a>
@@ -54,4 +58,7 @@
       </div>
     </div>
   </nav>
+</div>
+<div class="jumbotron-titulo text-center ">
+  <p>MartSystem</p>
 </div>

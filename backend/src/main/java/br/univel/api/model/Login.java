@@ -18,8 +18,8 @@ public class Login implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@Column(name = "usuario")
-	private String usuario;
+	@Column(name = "username")
+	private String username;
 
 	@Column(name = "senha")
 	private String senha;
@@ -31,9 +31,9 @@ public class Login implements Serializable {
 		
 	}
 
-	public Login(String usuario, String senha, String tipo) {
+	public Login(String username, String senha, String tipo) {
 		super();
-		this.usuario = usuario;
+		this.username = username;
 		this.senha = senha;
 		this.tipo = tipo;
 	}
@@ -46,12 +46,12 @@ public class Login implements Serializable {
 		this.id = id;
 	}
 
-	public String getUsuario() {
-		return usuario;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getSenha() {

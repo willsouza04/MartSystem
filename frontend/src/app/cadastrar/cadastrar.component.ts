@@ -11,5 +11,18 @@ export class CadastrarComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  
+  public testmercado(){
+	  document.getElementById("login-form").style.display = 'block';
+	  document.getElementById("register-form").style.display = 'none';
+	  document.getElementById("register-form-link").className = 'active';
+	  document.getElementById("login-form-link").className = '';
+  }
+  
+  public testusuario(){
+	  document.getElementById("login-form").style.display = 'none';
+	  document.getElementById("register-form").style.display = 'block';
+	  document.getElementById("register-form-link").className = '';
+	  document.getElementById("login-form-link").className = 'active';
+  }
 }
