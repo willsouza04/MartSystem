@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu-usuario',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuUsuarioComponent implements OnInit {
 
-  constructor() { }
+  public isCollapsed = false;
 
-  ngOnInit() {
+  constructor(
+    private router: Router
+  ) {  }
+
+  ngOnInit() {}
+
+  public activeRoute(routename: string): boolean {
+    return this.router.url.indexOf(routename) > -1;
   }
 
 }

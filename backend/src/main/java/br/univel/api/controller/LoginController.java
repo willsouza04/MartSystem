@@ -30,16 +30,16 @@ public class LoginController {
 		}
 	}
 	
-	// Url: api/login/findTipoByLogin?username=wfdsouza&senha=35795128
+	// Url: api/login/findLoginByUsernameAndPassword?username=wfdsouza&senha=35795128
 	@CrossOrigin(origins = "*")
-	@RequestMapping("api/login/findTipoByLogin")
-	public String findTipoByLogin(@RequestParam("username") String username,
+	@RequestMapping("api/login/findLoginByUsernameAndPassword")
+	public Login findLoginByUsernameAndPassword(@RequestParam("username") String username,
 			@RequestParam("senha") String senha){
 		try {
-			List<String> tipo = loginRepository.findTipoByLogin(username, senha);
-			return tipo.get(0);
+			List<Login> login = loginRepository.findLoginByUsernameAndPassword(username, senha);
+			return login.get(0);
 		} catch (Exception error) {
-			return "Error";
+			return null;
 		}
 	}
 }

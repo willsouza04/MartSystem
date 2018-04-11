@@ -16,8 +16,10 @@ import { CadastrarComponent } from './cadastrar/cadastrar.component';
 import { MercadoComponent } from './mercado/mercado.component';
 import { MenuMercadoComponent } from './menu-mercado/menu-mercado.component';
 import { MenuUsuarioComponent } from './menu-usuario/menu-usuario.component';
+import { UsuarioComponent } from './usuario/usuario.component';
 
 import { EntrarService } from './entrar/entrar.service';
+import { CadastrarService } from './cadastrar/cadastrar.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { EntrarService } from './entrar/entrar.service';
     CadastrarComponent,
     MercadoComponent,
     MenuMercadoComponent,
-    MenuUsuarioComponent
+    MenuUsuarioComponent,
+    UsuarioComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,7 @@ import { EntrarService } from './entrar/entrar.service';
     BsDropdownModule.forRoot(),
     CollapseModule.forRoot()
   ],
-  providers: [EntrarService],
+  providers: [EntrarService, CadastrarService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

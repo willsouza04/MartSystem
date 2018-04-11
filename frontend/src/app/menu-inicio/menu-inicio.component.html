@@ -41,18 +41,18 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a><span class="glyphicon glyphicon-education logo-nav"></span></a>
+        <a href=""><span class="glyphicon glyphicon-education logo-nav"></span></a>
       </div>
       <div class="navbar-collapse collapse" [collapse]="!isCollapsed">
         <ul class="nav navbar-nav navbar-right">
           <li [ngClass]="{active: activeRoute('/home')}">
-            <a href="home" (click)="isCollapsed = !isCollapsed">HOME</a>
+            <a routerLink="/home" (click)="isCollapsed = !isCollapsed">HOME</a>
           </li>
           <li [ngClass]="{active: activeRoute('/entrar')}">
-            <a href="entrar" (click)="isCollapsed = !isCollapsed">ENTRAR</a>
+            <a routerLink="/entrar" (click)="isCollapsed = !isCollapsed">ENTRAR</a>
           </li>
           <li style="background-color: #101010" [ngClass]="{active: activeRoute('/cadastrar')}">
-            <a href="cadastrar" (click)="isCollapsed = !isCollapsed">CADASTRAR</a>
+            <a routerLink="/cadastrar" href="cadastrar" (click)="isCollapsed = !isCollapsed">CADASTRAR</a>
           </li>
         </ul>
       </div>

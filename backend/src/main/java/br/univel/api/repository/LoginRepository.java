@@ -13,7 +13,7 @@ public interface LoginRepository extends CrudRepository<Login, Long> {
 	
 	@Modifying
 	@Transactional
-	@Query("select l.tipo from Login l where l.username = ?1 and l.senha = ?2")
-	List<String> findTipoByLogin(String username, String senha);
+	@Query("select l from Login l where l.username = ?1 and l.senha = ?2")
+	List<Login> findLoginByUsernameAndPassword(String username, String senha);
 
 }

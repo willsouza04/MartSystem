@@ -3,18 +3,19 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
+import { Login } from './entrar';
+
 @Injectable()
 export class EntrarService {
-		
+
 		constructor(private http: Http) { }
 		
-		//Arrumar
-		public findTipoByLogin(username: string, senha: string): Observable<string> {
-			var Url = 'http://localhost:4200/api/login/findTipoByLogin?';
-			Url += 'username=' + username + '&';
-			Url += 'senha=' + senha;
+		public findLoginByUsernameAndPassword(loginAtual: Login): Observable<Login> {
+			var Url = 'api/login/findLoginByUsernameAndPassword?';
+			Url += 'username=' + loginAtual.username + '&';
+			Url += 'senha=' + loginAtual.senha;
 			var result = this.http.get(`${Url}`)
-			  .map((res: Response) => res.toString());
+			  .map((res: Response) => res.json());
 			return result;
 	  }
 }

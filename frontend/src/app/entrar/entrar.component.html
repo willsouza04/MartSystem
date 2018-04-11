@@ -4,17 +4,17 @@
 		padding-bottom: 30px;
 	}
 	.label-text {
-		padding-top: 10px; 
+		padding-top: 10px;
 		font-size: 16px;
 	}
-	.panel-heading {	
+	.panel-heading {
 		color: #4682B4;
 		background-color: #fff;
 		border-color: #fff;
 		text-align:center;
 	}
 	.btn-login {
-		background-color: #59B2E0;		
+		background-color: #59B2E0;
 		color: #fff;
 		font-size: 14px;
 		height: auto;
@@ -27,7 +27,7 @@
 		color: #fff;
 		background-color: #53A3CD;
 		border-color: #53A3CD;
-	}	
+	}
 	.panel-login input[type="text"],.panel-login input[type="email"],.panel-login input[type="password"] {
 		height: 45px;
 		border: 1px solid #ddd;
@@ -36,6 +36,15 @@
 </style>
 
 <app-menu-inicio></app-menu-inicio>
+
+<div id="error" style="display: none; padding-top: 20px;">
+	<div  class="alert alert-danger alert-dismissible" align="center">
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="FecharErroLogin()">
+	    <span aria-hidden="true">&times;</span>
+	  </button>
+	  <strong>Erro!</strong> usuário ou senha inválidos!
+	</div>
+</div>
 
 <div class="jumbotron text-center ">
 	<div class="container">
@@ -51,13 +60,13 @@
 							<div class="col-lg-2" >
 							</div>
 							<div class="col-lg-8 panel-login" >
-								<input type="text" class="form-control" align="center" placeholder="Username" [(ngModel)]="username"/>
+								<input type="text" class="form-control" align="center" placeholder="Username" [(ngModel)]="loginAtual.username"/>
 								<br/>
-								<input type="password" class="form-control" align="center" placeholder="Password" [(ngModel)]="senha"/>
-								<div style="padding-top: 40px; padding-bottom: 30px;">				
+								<input type="password" class="form-control" align="center" placeholder="Password" [(ngModel)]="loginAtual.senha"/>
+								<div style="padding-top: 40px; padding-bottom: 30px;">
 									<button type="button" class="btn btn-lg btn-login" (click)="login()">ENVIAR</button>
-								</div>								
-							</div>							
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
