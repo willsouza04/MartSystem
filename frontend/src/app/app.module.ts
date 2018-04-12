@@ -17,6 +17,7 @@ import { MercadoComponent } from './mercado/mercado.component';
 import { MenuMercadoComponent } from './menu-mercado/menu-mercado.component';
 import { MenuUsuarioComponent } from './menu-usuario/menu-usuario.component';
 import { UsuarioComponent } from './usuario/usuario.component';
+import { CadastrarProdutoComponent } from './cadastrar-produto/cadastrar-produto.component';
 
 import { EntrarService } from './entrar/entrar.service';
 import { CadastrarService } from './cadastrar/cadastrar.service';
@@ -31,7 +32,8 @@ import { CadastrarService } from './cadastrar/cadastrar.service';
     MercadoComponent,
     MenuMercadoComponent,
     MenuUsuarioComponent,
-    UsuarioComponent
+    UsuarioComponent,
+    CadastrarProdutoComponent
   ],
   imports: [
     BrowserModule,

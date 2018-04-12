@@ -6,6 +6,7 @@ import { EntrarComponent } from './entrar/entrar.component';
 import { CadastrarComponent } from './cadastrar/cadastrar.component';
 import { MercadoComponent } from './mercado/mercado.component';
 import { UsuarioComponent } from './usuario/usuario.component';
+import { CadastrarProdutoComponent } from './cadastrar-produto/cadastrar-produto.component';
 
 export const appRoutes: Routes = [
     { path: '' , component: MenuInicioComponent },
@@ -13,5 +14,6 @@ export const appRoutes: Routes = [
     { path: 'entrar' , component: EntrarComponent },
     { path: 'cadastrar' , component: CadastrarComponent },
     { path: 'mercado/:id', component: MercadoComponent },
-    { path: 'usuario/:id', component: UsuarioComponent}
+    { path: 'usuario/:id', component: UsuarioComponent},
+    { path: 'mercado/:id/cadastrar', component: CadastrarProdutoComponent}
 ];

@@ -45,6 +45,12 @@
       </div>
       <div class="navbar-collapse collapse" [collapse]="!isCollapsed">
         <ul class="nav navbar-nav navbar-right">
+          <li style="background-color: #101010" [ngClass]="{active: activeRoute('/mercado/:id')}">
+           <a href="/mercado/:id" (click)="isCollapsed = !isCollapsed">MENU INICIAL</a>
+         </li>
+          <li style="background-color: #101010" [ngClass]="{active: activeRoute('/mercado/:id/cadastrar')}">
+           <a href="/mercado/:id/cadastrar" (click)="isCollapsed = !isCollapsed">CADASTRAR PRODUTO</a>
+         </li>
           <li style="background-color: #101010" [ngClass]="{active: activeRoute('/entrar')}">
             <a href="/entrar" (click)="isCollapsed = !isCollapsed">SAIR</a>
           </li>
