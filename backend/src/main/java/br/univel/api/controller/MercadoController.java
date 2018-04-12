@@ -1,6 +1,7 @@
 package br.univel.api.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,6 +25,7 @@ public class MercadoController {
 	
 	
 	// Url: api/mercado/save?id_login=1&id_endereco=1&cnpj=3165165&nome=UmNomeAi
+	@CrossOrigin(origins = "*")
 	@RequestMapping("api/mercado/save")
 	public String save(@RequestParam("id_login") Long id_login, @RequestParam("id_endereco") Long id_endereco, 
 			@RequestParam("cnpj") String cnpj, @RequestParam("nome") String nome) {

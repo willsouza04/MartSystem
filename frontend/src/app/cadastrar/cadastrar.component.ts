@@ -34,6 +34,7 @@ export class CadastrarComponent implements OnInit {
   }
 
   public continuar(){
+    this.FecharErroFinal();
     if (this.loginAtual.tipo == 'mercado'){
       if(((this.mercado.nome == null) || (this.mercado.nome == '')) ||
           ((this.loginAtual.username == null) || (this.loginAtual.username == '')) ||
@@ -118,8 +119,8 @@ export class CadastrarComponent implements OnInit {
 
   public adicionarLogin(){
     this.cadastrarService.addLogin(this.loginAtual)
-    .subscribe(res => {		
-		//carregar id do login com res
+    .subscribe(res => {
+    		this.loginAtual = res;
         this.adicionarEndereco();
       }, err => {}
     );
@@ -128,7 +129,7 @@ export class CadastrarComponent implements OnInit {
   public adicionarEndereco(){
     this.cadastrarService.addEndereco(this.endereco)
     .subscribe(res => {
-		//carregar id do endereco com res
+    		this.endereco = res;
         if(this.loginAtual.tipo == 'mercado'){
           this.adicionarMercado();
         }
@@ -142,9 +143,9 @@ export class CadastrarComponent implements OnInit {
   }
 
   public adicionarMercado(){
-    this.cadastrarService.addMercado(this.mercado, this.loginAtual, this.mercado)
+    this.cadastrarService.addMercado(this.mercado, this.loginAtual, this.endereco)
     .subscribe(res => {
-        //success
+        window.location.href = '/mercado/' + this.loginAtual.id;
       }, err => {
         this.removerEndereco();
       }
@@ -152,9 +153,9 @@ export class CadastrarComponent implements OnInit {
   }
 
   public adicionarUsuario(){
-    this.cadastrarService.addUsuario(this.usuario, this.loginAtual, this.mercado)
+    this.cadastrarService.addUsuario(this.usuario, this.loginAtual, this.endereco)
     .subscribe(res => {
-        //success
+        window.location.href = '/usuario/' + this.loginAtual.id;
       }, err => {
         this.removerEndereco();
       }
@@ -162,12 +163,23 @@ export class CadastrarComponent implements OnInit {
   }
 
   public removerLogin(){
-    //remover Login
+    this.cadastrarService.removerLogin(this.loginAtual.id)
+    .subscribe(res => {
+        this.AbrirErroFinal();
+      }, err => {
+        this.AbrirErroFinal();
+      }
+    );
   }
 
   public removerEndereco(){
-    //remover Endereco
-    this.removerLogin();
+    this.cadastrarService.removerEndereco(this.endereco.id)
+    .subscribe(res => {
+        this.removerLogin();
+      }, err => {
+        this.AbrirErroFinal();
+      }
+    );
   }
 
   public verificarUsername(){
@@ -184,7 +196,7 @@ export class CadastrarComponent implements OnInit {
     document.getElementById("cadastro-inicio").style.display = 'block';
 	  document.getElementById("cadastro-endereco").style.display = 'none';
   }
-
+  
   public limparCampoEndereco(){
     this.endereco.cep = '';
     this.endereco.rua = '';
@@ -254,5 +266,17 @@ export class CadastrarComponent implements OnInit {
 
   public FecharErroNumero(){
     document.getElementById("errorNumero").style.display = 'none';
+  }
+
+  public AbrirErroFinal(){
+    document.getElementById("errorFinal").style.display = 'block';
+    this.limparCampoEndereco();
+    this.limparCamposLogin();
+    document.getElementById("cadastro-inicio").style.display = 'block';
+	  document.getElementById("cadastro-endereco").style.display = 'none';
+  }
+
+  public FecharErroFinal(){
+    document.getElementById("errorFinal").style.display = 'none';
   }
 }

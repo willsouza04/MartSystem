@@ -32,17 +32,17 @@ export class CadastrarService {
     Url += 'cpf=' + usuario.cpf + '&';
     Url += 'idade=' + usuario.idade;
     var result = this.http.get(`${Url}`)
-      .map((res: Response) => res.toString());
+      .map((res: Response) => res.json());
     return result;
   }
 
   public addLogin(loginAtual: Login): Observable<string> {
     var Url = 'api/login/save?';
-    Url += 'usuario=' + loginAtual.username + '&';
+    Url += 'username=' + loginAtual.username + '&';
     Url += 'senha=' + loginAtual.senha + '&';
     Url += 'tipo=' + loginAtual.tipo;
     var result = this.http.get(`${Url}`)
-      .map((res: Response) => res.toString());
+      .map((res: Response) => res.json());
     return result;
   }
 
@@ -55,7 +55,7 @@ export class CadastrarService {
     Url += 'estado=' + endereco.estado + '&';
     Url += 'pais=' + endereco.pais;
     var result = this.http.get(`${Url}`)
-      .map((res: Response) => res.toString());
+      .map((res: Response) => res.json());
     return result;
   }
 

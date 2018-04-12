@@ -17,16 +17,17 @@ public class LoginController {
 	@Autowired
 	LoginRepository loginRepository;
 	
-	// Url: api/login/save?usuario=wfdsouza&senha=35795128&tipo=usuario
+	// Url: api/login/save?username=wfdsouza&senha=35795128&tipo=usuario
 	@CrossOrigin(origins = "*")
 	@RequestMapping("api/login/save")
-	public String save(@RequestParam("usuario") String usuario, @RequestParam("senha") String senha,
+	public Login save(@RequestParam("username") String username, @RequestParam("senha") String senha,
 			@RequestParam("tipo") String tipo) {
 		try {
-			loginRepository.save(new Login(usuario, senha, tipo));
-			return "Done";
+			loginRepository.save(new Login(username, senha, tipo));
+			List<Login> login = loginRepository.findLoginByUsernameAndPassword(username, senha);
+			return login.get(0);
 		} catch (Exception error) {
-			return "Error";
+			return null;
 		}
 	}
 	
@@ -40,6 +41,18 @@ public class LoginController {
 			return login.get(0);
 		} catch (Exception error) {
 			return null;
+		}
+	}
+	
+	// Url: api/login/deleteById?id=1
+	@CrossOrigin(origins = "*")
+	@RequestMapping("api/login/deleteById")
+	public String deleteById(@RequestParam("id") Long id) {
+		try {
+			loginRepository.deleteById(id);
+			return "Done";
+		} catch (Exception error) {
+			return "Error";
 		}
 	}
 }
