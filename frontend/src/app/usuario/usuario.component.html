@@ -1,12 +1,68 @@
+
+
 <style>
-  .jumbotron {
-      padding: 100px 25px;
+  .jumbotron-titulo {
+      background-color:#708090;
+      color: #ffffff;
+      padding-top: 80px;
+	  padding-bottom: 30px;
+	  font-size: 60px;
+  }
+  .navbar {
+      margin-bottom: 0;
+      background-color: #303030;
+      z-index: 9999;
+      border: 0;
+      font-size: 12px !important;
+      line-height: 1.42857143 !important;
+      letter-spacing: 4px;
+      border-radius: 0;
+  }
+  .navbar li a, .navbar .navbar-brand {
+      color: #fff !important;
+  }
+  .navbar-nav li a:hover, .navbar-nav li.active a {
+      color: #708090 !important;
+      background-color: #fff !important;
+  }
+  .navbar-default .navbar-toggle {
+      border-color: transparent;
+      color: #fff !important;
+  }
+  .logo-nav {
+      color: #4682B4;
+      font-size: 45px;
   }
 </style>
-<app-menu-usuario></app-menu-usuario>
 
-<div class="jumbotron text-center ">
-  <p>
-  Usuario teste
-  </p>
-</div>
+<app-menu-usuario></app-menu-usuario>
+<div>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" (click)="isCollapsed = !isCollapsed">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a href=""><span class="glyphicon glyphicon-education logo-nav"></span></a>
+      </div>
+      <div class="navbar-collapse collapse" [collapse]="!isCollapsed">
+        <ul class="nav navbar-nav navbar-right">
+          <li [ngClass]="{active: activeRoute('/home')}">
+            <a href="/home"(click)="isCollapsed = !isCollapsed">SAIR</a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li [ngClass]="{active: activeRoute('/catalago')}">
+            <a routerLink="/catalago" (click)="isCollapsed = !isCollapsed">PEDIDO</a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li [ngClass]="{active: activeRoute('/histProduto')}">
+            <a routerLink="/histProduto" (click)="isCollapsed = !isCollapsed">HISTORICO</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
