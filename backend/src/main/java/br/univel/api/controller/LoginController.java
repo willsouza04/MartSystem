@@ -31,6 +31,28 @@ public class LoginController {
 		}
 	}
 	
+	// Url: api/login/findById?id=1
+	@CrossOrigin(origins = "*")
+	@RequestMapping("api/login/findById")
+	public Login findById(@RequestParam("id") Long id) {
+		try {
+			return loginRepository.findOne(id);
+		} catch (NullPointerException error) {
+			return null;
+		}
+	}
+	
+	// Url: api/login/findAll
+	@CrossOrigin(origins = "*")
+	@RequestMapping("api/login/findAll")
+	public List<Login> findAll() {
+		try {
+			return (List<Login>) loginRepository.findAll();
+		} catch (Exception error) {
+			return null;
+		}
+	}
+	
 	// Url: api/login/findLoginByUsernameAndPassword?username=wfdsouza&senha=35795128
 	@CrossOrigin(origins = "*")
 	@RequestMapping("api/login/findLoginByUsernameAndPassword")

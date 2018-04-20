@@ -7,6 +7,7 @@ import { Login } from '../entrar/entrar';
 import { Endereco } from '../endereco/endereco';
 import { Mercado } from '../mercado/mercado';
 import { Usuario } from '../usuario/usuario';
+import { Sessao } from '../sessao/sessao';
 
 @Injectable()
 export class CadastrarService {
@@ -59,6 +60,13 @@ export class CadastrarService {
     return result;
   }
 
+  public loadUsernameLogins(): Observable<Login[]> {
+    var Url = 'api/login/findAll';
+    var result = this.http.get(`${Url}`)
+      .map((res: Response) => res.json());
+    return result;
+  }
+
   public removerLogin(id: number): Observable<string>{
     var urlRemove = 'api/login/deleteById?id='+id;
     var result =  this.http.get(`${urlRemove}`)
@@ -70,6 +78,13 @@ export class CadastrarService {
     var urlRemove = 'api/endereco/deleteById?id='+id;
     var result =  this.http.get(`${urlRemove}`)
       .map((res: Response) => res.toString());
+    return result;
+  }
+
+  public addSessao(loginAtual: Login): Observable<Sessao> {
+    var Url = 'api/sessao/save?id_login=' + loginAtual.id;
+    var result = this.http.get(`${Url}`)
+      .map((res: Response) => res.json());
     return result;
   }
 }

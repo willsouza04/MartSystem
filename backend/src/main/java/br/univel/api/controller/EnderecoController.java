@@ -31,6 +31,16 @@ public class EnderecoController {
 			return null;
 		}
 	}
+	// Url: api/endereco/findById?id=1
+	@CrossOrigin(origins = "*")
+	@RequestMapping("api/endereco/findById")
+	public Endereco findById(@RequestParam("id") Long id) {
+		try {
+			return enderecoRepository.findOne(id);
+		} catch (NullPointerException error) {
+			return null;
+		}
+	}
 	
 	// Url: api/endereco/findEnderecoByCepAndNumero?cep=123456789&numero=3
 	@CrossOrigin(origins = "*")

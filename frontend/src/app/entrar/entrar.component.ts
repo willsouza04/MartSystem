@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { EntrarService } from './entrar.service';
 
 import { Login } from './entrar';
+import { Sessao } from '../sessao/sessao'
 
 @Component({
   selector: 'app-entrar',
@@ -12,6 +13,7 @@ import { Login } from './entrar';
 export class EntrarComponent implements OnInit {
 
   public loginAtual = new Login();
+  public sessao = new Sessao();
 
 	constructor(
 		private router: Router,
@@ -33,22 +35,36 @@ export class EntrarComponent implements OnInit {
 		this.entrarService.findLoginByUsernameAndPassword(this.loginAtual)
 			.subscribe(res => {
           this.FecharErroLogin();
+          this.FecharErroLoginTimeout();
           this.loginAtual = res;
-          if(this.loginAtual.tipo == 'mercado'){
-            window.location.href = '/mercado/' + this.loginAtual.id;
-          }
-          else {
-            window.location.href = '/usuario/' + this.loginAtual.id;
-          }
+          this.addSessao();
 			  }, err => {
-          this.resetLogin();
-          this.AbrirErroLogin();
+          if(err.statusText == "Gateway Timeout"){
+            this.resetLogin();
+            this.AbrirErroLoginTimeout();
+          }else{
+            this.resetLogin();
+            this.AbrirErroLogin();
+          }
 			  }
 		);
 	}
 
-  public direcionar(){
-
+  public addSessao(){
+    this.entrarService.addSessao(this.loginAtual)
+      .subscribe(res => {
+        this.sessao = res;
+        if(this.loginAtual.tipo == 'mercado'){
+          window.location.href = '/mercado/' + this.sessao.id;
+        }
+        else {
+          window.location.href = '/usuario/' + this.sessao.id;
+        }
+      }, err => {
+        this.resetLogin();
+        this.AbrirErroLogin();
+      }
+    );
   }
 
   public AbrirErroLogin(){
@@ -57,5 +73,13 @@ export class EntrarComponent implements OnInit {
 
   public FecharErroLogin(){
     document.getElementById("error").style.display = 'none';
+  }
+
+  public AbrirErroLoginTimeout(){
+    document.getElementById("errorTimeout").style.display = 'block';
+  }
+
+  public FecharErroLoginTimeout(){
+    document.getElementById("errorTimeout").style.display = 'none';
   }
 }

@@ -9,31 +9,33 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { appRoutes } from './app.routes';
 
-import { HomeInicioComponent } from './home-inicio/home-inicio.component';
-import { MenuInicioComponent } from './menu-inicio/menu-inicio.component';
-import { EntrarComponent } from './entrar/entrar.component';
 import { CadastrarComponent } from './cadastrar/cadastrar.component';
+import { EntrarComponent } from './entrar/entrar.component';
+import { ErrorComponent } from './error/error.component';
+import { InicioComponent } from './inicio/inicio.component';
+import { InicioMenuComponent } from './inicio-menu/inicio-menu.component';
 import { MercadoComponent } from './mercado/mercado.component';
-import { MenuMercadoComponent } from './menu-mercado/menu-mercado.component';
-import { MenuUsuarioComponent } from './menu-usuario/menu-usuario.component';
+import { MercadoMenuComponent } from './mercado-menu/mercado-menu.component';
 import { UsuarioComponent } from './usuario/usuario.component';
-import { CadastrarProdutoComponent } from './cadastrar-produto/cadastrar-produto.component';
+import { UsuarioMenuComponent } from './usuario-menu/usuario-menu.component';
 
 import { EntrarService } from './entrar/entrar.service';
 import { CadastrarService } from './cadastrar/cadastrar.service';
+import { MercadoService } from './mercado/mercado.service';
+import { UsuarioService } from './usuario/usuario.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeInicioComponent,
-    MenuInicioComponent,
-    EntrarComponent,
     CadastrarComponent,
+    EntrarComponent,
+    InicioComponent,
+    InicioMenuComponent,
     MercadoComponent,
-    MenuMercadoComponent,
-    MenuUsuarioComponent,
+    MercadoMenuComponent,
     UsuarioComponent,
-    CadastrarProdutoComponent
+    UsuarioMenuComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +48,7 @@ import { CadastrarService } from './cadastrar/cadastrar.service';
     BsDropdownModule.forRoot(),
     CollapseModule.forRoot()
   ],
-  providers: [EntrarService, CadastrarService],
+  providers: [EntrarService, CadastrarService, MercadoService, UsuarioService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

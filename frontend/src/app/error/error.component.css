@@ -1,0 +1,20 @@
+.jumbotron {
+    background-color: #EFEFEF;
+}
+.btn-login {
+  background-color: #909090;
+  outline: none;
+  color: #fff;
+  font-size: 14px;
+  height: auto;
+  font-weight: normal;
+  padding: 14px 0;
+  text-transform: uppercase;
+  border-color: #909090;
+}
+.btn-login:hover,
+.btn-login:focus {
+  color: #fff;
+  background-color: #696969;
+  border-color: #696969;
+}

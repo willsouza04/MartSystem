@@ -1,0 +1,27 @@
+<div>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" (click)="isCollapsed = !isCollapsed">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a href="/inicio"><span class="glyphicon glyphicon-education logo-nav"></span></a>
+      </div>
+      <div class="navbar-collapse collapse" [collapse]="!isCollapsed">
+        <ul class="nav navbar-nav navbar-right">
+          <li [ngClass]="{active: activeRoute('/entrar')}">
+            <a routerLink="/entrar" (click)="isCollapsed = !isCollapsed">ENTRAR</a>
+          </li>
+          <li style="background-color: #101010" [ngClass]="{active: activeRoute('/cadastrar')}">
+            <a routerLink="/cadastrar" href="cadastrar" (click)="isCollapsed = !isCollapsed">CADASTRAR</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+<div class="jumbotron-titulo text-center ">
+  <p>MartSystem</p>
+</div>

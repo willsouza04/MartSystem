@@ -1,12 +1,43 @@
-<style>
-  .jumbotron {
-      padding: 100px 25px;
-  }
-</style>
-<app-menu-mercado></app-menu-mercado>
+<app-mercado-menu></app-mercado-menu>
 
-<div class="jumbotron text-center ">
-  <p>
-  Mercado teste
-  </p>
+<div id="loading" class="container" style="display: block;">
+	<div class="row">
+      <div class="animationload">
+            <div class="osahanloading"></div>
+      </div>
+	</div>
+</div>
+
+<div id="mercado" class="jumbotron text-center " style="display: none;">
+	<div class="container">
+			<div class="row">
+					<div>
+							<div class="box">
+									<div class="box-icon">
+											<span class="glyphicon fa-4x glyphicon-shopping-cart"></span>
+									</div>
+									<div class="info">
+											<h4 class="text-center">{{mercado.nome}}</h4>
+											<h5 class="text-center">CNPJ: {{mercado.cnpj}}</h5>
+									</div>
+							</div>
+					</div>
+		</div>
+	</div>
+	<br>
+	<div class="row" style="padding-top:80px">
+		<div class="col-md-4 col-md-offset-2">
+			<div style="width: 100%;">
+		   	<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3617.3400477379837!2d-53.46938938499534!3d-24.9545426840096!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94f3d4054194034d%3A0x3c1743665fcf6069!2sSuper+Muffato+Brasil!5e0!3m2!1spt-BR!2sbr!4v1524257303167" width="100%" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
+			</div>
+		</div>
+
+			<div class="col-sm-4"style="padding-top:60px">
+			  <p>Rua: {{endereco.rua}}</p>
+			  <p>Numero: {{endereco.numero}}</p>
+			  <p>Cidade: {{endereco.cidade}}</p>
+			  <p>Estado: {{endereco.estado}}</p>
+			  <p>Pais: {{endereco.pais}}</p>
+			</div>
+	</div>
 </div>

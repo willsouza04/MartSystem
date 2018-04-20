@@ -1,19 +1,19 @@
 import { RouterModule, Routes } from '@angular/router';
 
-import { HomeInicioComponent } from './home-inicio/home-inicio.component';
-import { MenuInicioComponent } from './menu-inicio/menu-inicio.component';
-import { EntrarComponent } from './entrar/entrar.component';
 import { CadastrarComponent } from './cadastrar/cadastrar.component';
+import { EntrarComponent } from './entrar/entrar.component';
+import { ErrorComponent } from './error/error.component';
+import { InicioComponent } from './inicio/inicio.component';
 import { MercadoComponent } from './mercado/mercado.component';
 import { UsuarioComponent } from './usuario/usuario.component';
-import { CadastrarProdutoComponent } from './cadastrar-produto/cadastrar-produto.component';
 
 export const appRoutes: Routes = [
-    { path: '' , component: MenuInicioComponent },
-    { path: 'home' , component: HomeInicioComponent },
-    { path: 'entrar' , component: EntrarComponent },
+    { path: '', redirectTo: '/inicio', pathMatch: 'full'},
     { path: 'cadastrar' , component: CadastrarComponent },
+    { path: 'entrar' , component: EntrarComponent },
+    { path: 'error' , component: ErrorComponent},
+    { path: 'inicio' , component: InicioComponent },
     { path: 'mercado/:id', component: MercadoComponent },
     { path: 'usuario/:id', component: UsuarioComponent},
-    { path: 'mercado/:id/cadastrar', component: CadastrarProdutoComponent}
+    { path: '**', redirectTo: '/error', pathMatch: 'full'}    
 ];

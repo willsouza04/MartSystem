@@ -6,6 +6,7 @@ import { Login } from '../entrar/entrar';
 import { Endereco } from '../endereco/endereco';
 import { Mercado } from '../mercado/mercado';
 import { Usuario } from '../usuario/usuario';
+import { Sessao } from '../sessao/sessao';
 
 @Component({
   selector: 'app-cadastrar',
@@ -18,6 +19,9 @@ export class CadastrarComponent implements OnInit {
   public endereco = new Endereco();
   public mercado = new Mercado();
   public usuario = new Usuario();
+  public sessao = new Sessao();
+
+  public usernameLogins: Login[] = [];
 
   public idadeUsuario = '';
   public numeroEndereco = '';
@@ -34,7 +38,7 @@ export class CadastrarComponent implements OnInit {
   }
 
   public continuar(){
-    this.FecharErroFinal();
+    this.fecharErros();
     if (this.loginAtual.tipo == 'mercado'){
       if(((this.mercado.nome == null) || (this.mercado.nome == '')) ||
           ((this.loginAtual.username == null) || (this.loginAtual.username == '')) ||
@@ -43,14 +47,7 @@ export class CadastrarComponent implements OnInit {
         this.AbrirErroCampos();
       }
       else{
-        this.FecharErroCampos();
-        if(this.verificarUsername()){
-          this.AbrirErroUserName();
-        }
-        else{
-          this.FecharErroUserName();
-          this.abrirCadastroEndereco();
-        }
+        this.verificarUsername();
       }
     }
     else if (this.loginAtual.tipo == 'usuario'){
@@ -62,25 +59,16 @@ export class CadastrarComponent implements OnInit {
         this.AbrirErroCampos();
       }
       else{
-        this.FecharErroCampos();
-        if(this.verificarUsername()){
-          this.AbrirErroUserName();
-        }
-        else{
-          this.FecharErroUserName();
-          try {
-              this.usuario.idade = parseInt(this.idadeUsuario);
-              this.FecharErroIdade();
-              if(this.usuario.idade > 16 && this.usuario.idade < 120){
-                console.log("Foi");
-                this.abrirCadastroEndereco();
-              }
-              else{
-                this.AbrirErroIdade();
-              }
-          } catch (e) {
+        try {
+            this.usuario.idade = parseInt(this.idadeUsuario);
+            if(this.usuario.idade > 16 && this.usuario.idade < 120){
+              this.verificarUsername();
+            }
+            else{
               this.AbrirErroIdade();
-          }
+            }
+        } catch (e) {
+            this.AbrirErroIdade();
         }
       }
     }
@@ -96,11 +84,9 @@ export class CadastrarComponent implements OnInit {
           this.AbrirErroCampos();
         }
         else{
-          this.FecharErroCampos();
           try {
               this.endereco.numero = parseInt(this.numeroEndereco);
               if(this.endereco.numero > 0){
-                this.FecharErroNumero();
                 this.finalizarCadastro();
               }
               else{
@@ -145,7 +131,7 @@ export class CadastrarComponent implements OnInit {
   public adicionarMercado(){
     this.cadastrarService.addMercado(this.mercado, this.loginAtual, this.endereco)
     .subscribe(res => {
-        window.location.href = '/mercado/' + this.loginAtual.id;
+      this.addSessao();
       }, err => {
         this.removerEndereco();
       }
@@ -155,7 +141,23 @@ export class CadastrarComponent implements OnInit {
   public adicionarUsuario(){
     this.cadastrarService.addUsuario(this.usuario, this.loginAtual, this.endereco)
     .subscribe(res => {
-        window.location.href = '/usuario/' + this.loginAtual.id;
+        this.addSessao();
+      }, err => {
+        this.removerEndereco();
+      }
+    );
+  }
+
+  public addSessao(){
+    this.cadastrarService.addSessao(this.loginAtual)
+      .subscribe(res => {
+        this.sessao = res;
+        if(this.loginAtual.tipo == 'mercado'){
+          window.location.href = '/mercado/' + this.sessao.id;
+        }
+        else {
+          window.location.href = '/usuario/' + this.sessao.id;
+        }
       }, err => {
         this.removerEndereco();
       }
@@ -183,8 +185,25 @@ export class CadastrarComponent implements OnInit {
   }
 
   public verificarUsername(){
-    //verificar usernames
-    return false;
+    var repetido = false;
+    this.cadastrarService.loadUsernameLogins()
+      .subscribe(res =>{
+        this.usernameLogins = res;
+        for (let loginNovo of this.usernameLogins){
+          if(loginNovo.username == this.loginAtual.username){
+            repetido = true;
+          }
+        }
+        if(repetido){
+          this.AbrirErroUserName();
+        }
+        else{
+          this.abrirCadastroEndereco();
+        }
+      }, err => {
+        this.AbrirErroFinal();
+      }
+    );
   }
 
   public abrirCadastroEndereco(){
@@ -196,7 +215,15 @@ export class CadastrarComponent implements OnInit {
     document.getElementById("cadastro-inicio").style.display = 'block';
 	  document.getElementById("cadastro-endereco").style.display = 'none';
   }
-  
+
+  public fecharErros(){
+    this.FecharErroCampos();
+    this.FecharErroIdade();
+    this.FecharErroNumero();
+    this.FecharErroUserName();
+    this.FecharErroFinal();
+  }
+
   public limparCampoEndereco(){
     this.endereco.cep = '';
     this.endereco.rua = '';
