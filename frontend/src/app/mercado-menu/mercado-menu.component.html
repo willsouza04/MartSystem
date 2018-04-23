@@ -15,7 +15,7 @@
             <a href="/mercado/:id/produto" (click)="isCollapsed = !isCollapsed">PRODUTO</a>
           </li>
           <li style="background-color: #101010" [ngClass]="{active: activeRoute('/entrar')}">
-            <a (click)="isCollapsed = !isCollapsed; encerrarSessao();">SAIR</a>
+            <a  class="btn-sair" (click)="isCollapsed = !isCollapsed; encerrarSessao();">SAIR</a>
           </li>
         </ul>
       </div>

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
+import { ChartsModule } from 'ng2-charts';
 
 import { RouterModule } from '@angular/router';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
@@ -41,6 +42,7 @@ import { UsuarioService } from './usuario/usuario.service';
     BrowserModule,
     HttpModule,
     FormsModule,
+    ChartsModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: false }

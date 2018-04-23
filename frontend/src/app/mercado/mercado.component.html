@@ -25,19 +25,43 @@
 		</div>
 	</div>
 	<br>
-	<div class="row" style="padding-top:80px">
-		<div class="col-md-4 col-md-offset-2">
-			<div style="width: 100%;">
-		   	<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3617.3400477379837!2d-53.46938938499534!3d-24.9545426840096!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94f3d4054194034d%3A0x3c1743665fcf6069!2sSuper+Muffato+Brasil!5e0!3m2!1spt-BR!2sbr!4v1524257303167" width="100%" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
+	<div class="row" style="padding-top:50px">
+		<div class="col-sm-2 col-md-offset-1" style="padding-top:25px">
+			<div class="endereco" style="padding-bottom: 10px">
+				<i class="glyphicon glyphicon-map-marker"></i>
+				Endereço
 			</div>
+		  <p>Rua: {{endereco.rua}}</p>
+		  <p>Numero: {{endereco.numero}}</p>
+		  <p>Cidade: {{endereco.cidade}}</p>
+		  <p>Estado: {{endereco.estado}}</p>
+		  <p>Pais: {{endereco.pais}}</p>
 		</div>
-
-			<div class="col-sm-4"style="padding-top:60px">
-			  <p>Rua: {{endereco.rua}}</p>
-			  <p>Numero: {{endereco.numero}}</p>
-			  <p>Cidade: {{endereco.cidade}}</p>
-			  <p>Estado: {{endereco.estado}}</p>
-			  <p>Pais: {{endereco.pais}}</p>
-			</div>
+		<div class="col-md-6 col-md-offset-2">
+		 <div style="display: block;" >
+		 <canvas baseChart width="400" height="200"
+								 [datasets]="lineChartData"
+								 [labels]="lineChartLabels"
+								 [options]="lineChartOptions"
+								 [colors]="lineChartColors"
+								 [legend]="lineChartLegend"
+								 [chartType]="lineChartType"
+								 (chartHover)="chartHovered($event)"
+								 (chartClick)="chartClicked($event)"></canvas>
+		 </div>
+	 </div>
+	</div>
+	<div class="row" style="padding-top: 100px">
+	  <div class="col-md-10 col-md-offset-1" style="margin-bottom: 10px">
+	    <table class="table table-responsive table-condensed">
+	      <tr>
+	        <th *ngFor="let label of lineChartLabels">{{label}}</th>
+	      </tr>
+	      <tr *ngFor="let d of lineChartData">
+	        <td *ngFor="let label of lineChartLabels; let j=index">{{d && d.data[j]}}</td>
+	      </tr>
+	    </table>
+	    <button (click)="randomize()">CLICK</button>
+	  </div>
 	</div>
 </div>
