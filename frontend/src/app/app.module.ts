@@ -13,12 +13,13 @@ import { appRoutes } from './app.routes';
 import { CadastrarComponent } from './cadastrar/cadastrar.component';
 import { EntrarComponent } from './entrar/entrar.component';
 import { ErrorComponent } from './error/error.component';
-import { InicioComponent } from './inicio/inicio.component';
-import { InicioMenuComponent } from './inicio-menu/inicio-menu.component';
+import { HomeComponent } from './home/home.component';
+import { HomeMenuComponent } from './home/home-menu/home-menu.component';
 import { MercadoComponent } from './mercado/mercado.component';
-import { MercadoMenuComponent } from './mercado-menu/mercado-menu.component';
+import { MercadoMenuComponent } from './mercado/mercado-menu/mercado-menu.component';
 import { UsuarioComponent } from './usuario/usuario.component';
-import { UsuarioMenuComponent } from './usuario-menu/usuario-menu.component';
+import { UsuarioMenuComponent } from './usuario/usuario-menu/usuario-menu.component';
+import { ProdutoComponent } from './produto/produto.component';
 
 import { EntrarService } from './entrar/entrar.service';
 import { CadastrarService } from './cadastrar/cadastrar.service';
@@ -30,13 +31,14 @@ import { UsuarioService } from './usuario/usuario.service';
     AppComponent,
     CadastrarComponent,
     EntrarComponent,
-    InicioComponent,
-    InicioMenuComponent,
+    HomeComponent,
+    HomeMenuComponent,
     MercadoComponent,
     MercadoMenuComponent,
     UsuarioComponent,
     UsuarioMenuComponent,
-    ErrorComponent
+    ErrorComponent,
+    ProdutoComponent
   ],
   imports: [
     BrowserModule,

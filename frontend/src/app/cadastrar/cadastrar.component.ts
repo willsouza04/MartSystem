@@ -153,10 +153,10 @@ export class CadastrarComponent implements OnInit {
       .subscribe(res => {
         this.sessao = res;
         if(this.loginAtual.tipo == 'mercado'){
-          window.location.href = '/mercado/' + this.sessao.id;
+          window.location.href = '/' + this.sessao.id + '/mercado';
         }
         else {
-          window.location.href = '/usuario/' + this.sessao.id;
+          window.location.href = '/' + this.sessao.id + '/usuario';
         }
       }, err => {
         this.removerEndereco();

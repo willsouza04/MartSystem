@@ -25,43 +25,56 @@
 		</div>
 	</div>
 	<br>
-	<div class="row" style="padding-top:50px">
-		<div class="col-sm-2 col-md-offset-1" style="padding-top:25px">
-			<div class="endereco" style="padding-bottom: 10px">
-				<i class="glyphicon glyphicon-map-marker"></i>
-				Endereço
-			</div>
-		  <p>Rua: {{endereco.rua}}</p>
-		  <p>Numero: {{endereco.numero}}</p>
-		  <p>Cidade: {{endereco.cidade}}</p>
-		  <p>Estado: {{endereco.estado}}</p>
-		  <p>Pais: {{endereco.pais}}</p>
-		</div>
-		<div class="col-md-6 col-md-offset-2">
-		 <div style="display: block;" >
-		 <canvas baseChart width="400" height="200"
+	<div class="row" style="padding-top:80px">
+		<div class="col-md-10 col-md-offset-1">
+		<div class="titulos" style="padding-bottom: 20px">Venda por Categoria nos ultimos 6 meses</div>
+			<h2>Gráficos em linhas</h2>
+			<br>
+		 	<div style="display: block;" >
+		 	<canvas baseChart width="400" height="200"
 								 [datasets]="lineChartData"
-								 [labels]="lineChartLabels"
 								 [options]="lineChartOptions"
 								 [colors]="lineChartColors"
 								 [legend]="lineChartLegend"
 								 [chartType]="lineChartType"
+								 [labels]="lineChartLabels"
 								 (chartHover)="chartHovered($event)"
 								 (chartClick)="chartClicked($event)"></canvas>
 		 </div>
 	 </div>
 	</div>
-	<div class="row" style="padding-top: 100px">
+	<div class="row" style="padding-top: 100px;">
+		<h2>Tabela</h2>
 	  <div class="col-md-10 col-md-offset-1" style="margin-bottom: 10px">
-	    <table class="table table-responsive table-condensed">
-	      <tr>
-	        <th *ngFor="let label of lineChartLabels">{{label}}</th>
-	      </tr>
-	      <tr *ngFor="let d of lineChartData">
-	        <td *ngFor="let label of lineChartLabels; let j=index">{{d && d.data[j]}}</td>
-	      </tr>
-	    </table>
-	    <button (click)="randomize()">CLICK</button>
+	   <table class="table table-hover">
+        <thead>
+          <tr>
+						<th class="text-center">Categoria</th>
+		  			<th class="text-center" *ngFor="let label of lineChartLabels">{{label}}</th>
+          </tr>
+        </thead>
+        <tbody>
+					<tr *ngFor="let d of lineChartData">
+						<td class="text-center">{{d.label}}</td>
+			  		<td class="text-center" *ngFor="let label of lineChartLabels; let j=index">{{d && d.data[j]}}</td>
+      		</tr>
+			  </tbody>
+			</table>
 	  </div>
+	</div>
+	<div style="padding-top: 100px;">
+		<div class="map-background col-md-10 col-md-offset-1">
+			<div class="map">
+				<div class="endereco" style="padding-bottom: 10px">
+					<i class="glyphicon glyphicon-map-marker"></i>
+					Endereço
+				</div>
+			  <p>Rua: {{endereco.rua}}</p>
+			  <p>Numero: {{endereco.numero}}</p>
+			  <p>Cidade: {{endereco.cidade}}</p>
+			  <p>Estado: {{endereco.estado}}</p>
+			  <p>Pais: {{endereco.pais}}</p>
+			</div>
+		</div>
 	</div>
 </div>

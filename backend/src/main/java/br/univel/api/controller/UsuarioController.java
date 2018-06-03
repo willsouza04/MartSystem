@@ -17,15 +17,14 @@ public class UsuarioController {
 	
 	// Url: api/usuario/save?id_login=2&id_endereco=2&nome=UmNomeAi&cpf=3165165&idade=20
 	@RequestMapping("api/usuario/save")
-	public String save(@RequestParam("id_login") Long id_login, @RequestParam("id_endereco") Long id_endereco, 
+	public Usuario save(@RequestParam("id_login") Long id_login, @RequestParam("id_endereco") Long id_endereco, 
 			@RequestParam("nome") String nome, @RequestParam("cpf") String cpf, 
 			@RequestParam("idade") Long idade) {
 		try {
 			Usuario usuario = new Usuario(id_login, id_endereco, nome, cpf, idade);
-			usuarioRepository.save(usuario);
-			return "Done";
+			return usuarioRepository.save(usuario);
 		} catch (Exception error) {
-			return "Error";
+			return null;
 		}
 	}
 	

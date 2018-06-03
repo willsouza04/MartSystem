@@ -16,7 +16,7 @@ export class ErrorComponent implements OnInit {
   }
 
   public Inicio(){
-    window.location.href = '/inicio'
+    window.location.href = '/home'
   }
 
 }

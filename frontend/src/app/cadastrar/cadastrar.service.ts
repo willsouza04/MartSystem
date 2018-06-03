@@ -21,7 +21,7 @@ export class CadastrarService {
     Url += 'cnpj=' + mercado.cnpj + '&';
     Url += 'nome=' + mercado.nome;
     var result = this.http.get(`${Url}`)
-      .map((res: Response) => res.toString());
+      .map((res: Response) => res.json());
     return result;
   }
 
@@ -32,6 +32,7 @@ export class CadastrarService {
     Url += 'nome=' + usuario.nome + '&';
     Url += 'cpf=' + usuario.cpf + '&';
     Url += 'idade=' + usuario.idade;
+	console.log(Url)
     var result = this.http.get(`${Url}`)
       .map((res: Response) => res.json());
     return result;

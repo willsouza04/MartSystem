@@ -19,8 +19,13 @@ export class MercadoComponent implements OnInit {
   public endereco = new Endereco();
   public mercado = new Mercado();
   public sessao = new Sessao();
+  public data = new Date();
 
-  public maps = "embed?pb=!1m18!1m12!1m3!1d3617!2d!3d!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x%3A0x3c1743665fcf6069!2sSuper+Muffato+Brasil!5e0!3m2!1spt-BR!2sbr!4v1524257303167";
+  public AllMonths: String[] = [
+    "janeiro", "fevereiro", "março", "abril", "maio", "junho",
+    "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"
+  ];
+  public Month: String[] = [];
 
   constructor(
     private router: Router,
@@ -28,8 +33,10 @@ export class MercadoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.sessao.id = parseInt(this.router.url.split('/')[2]);
+    this.sessao.id = parseInt(this.router.url.split('/')[1]);
     this.limparSessoes();
+	  this.carregarMeses();
+    this.randomize();
   }
 
   public activeRoute(routename: string): boolean {
@@ -100,24 +107,26 @@ export class MercadoComponent implements OnInit {
     document.getElementById("loading").style.display = 'none';
   }
 
+  public carregarMeses(){
+	  for(var i = 5; i >= 0 ; i--){
+		  var mes = this.data.getMonth() - i;
+		  if (mes < 0){
+			  mes = 12 + mes
+		  }
+		  this.Month[5-i] = this.AllMonths[mes]
+	  }
+  }
+
   public lineChartData:Array<any> = [
-    {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
-    {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'},
-    {data: [18, 48, 77, 9, 100, 27, 40], label: 'Series C'}
+    {data: [0, 0, 0, 0, 0, 0], label: 'Alimentos'},
+    {data: [0, 0, 0, 0, 0, 0], label: 'Moradia'},
+    {data: [0, 0, 0, 0, 0, 0], label: 'Higiene'}
   ];
-  public lineChartLabels:Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+  public lineChartLabels:Array<any> = this.Month;
   public lineChartOptions:any = {
     responsive: true
   };
   public lineChartColors:Array<any> = [
-    { // grey
-      backgroundColor: 'rgba(148,159,177,0.2)',
-      borderColor: 'rgba(148,159,177,1)',
-      pointBackgroundColor: 'rgba(148,159,177,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-    },
     { // dark grey
       backgroundColor: 'rgba(77,83,96,0.2)',
       borderColor: 'rgba(77,83,96,1)',
@@ -126,13 +135,21 @@ export class MercadoComponent implements OnInit {
       pointHoverBackgroundColor: '#fff',
       pointHoverBorderColor: 'rgba(77,83,96,1)'
     },
-    { // grey
-      backgroundColor: 'rgba(148,159,177,0.2)',
-      borderColor: 'rgba(148,159,177,1)',
-      pointBackgroundColor: 'rgba(148,159,177,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+    { // blue
+      backgroundColor: 'rgba(120,140,220,0.2)',
+      borderColor: 'rgba(120,140,220,1)',
+      pointBackgroundColor: 'rgba(120,140,220,1)',
+      pointBorderColor: '#fgf',
+      pointHoverBackgroundColor: '#fgf',
+      pointHoverBorderColor: 'rgba(120,140,220,0.8)'
+    },
+    { // green
+      backgroundColor: 'rgba(120,220,140,0.2)',
+      borderColor: 'rgba(120,220,140,1)',
+      pointBackgroundColor: 'rgba(120,220,140,1)',
+      pointBorderColor: '#ffg',
+      pointHoverBackgroundColor: '#ffg',
+      pointHoverBorderColor: 'rgba(120,220,140,0.8)'
     }
   ];
   public lineChartLegend:boolean = true;
@@ -143,7 +160,7 @@ export class MercadoComponent implements OnInit {
     for (let i = 0; i < this.lineChartData.length; i++) {
       _lineChartData[i] = {data: new Array(this.lineChartData[i].data.length), label: this.lineChartData[i].label};
       for (let j = 0; j < this.lineChartData[i].data.length; j++) {
-        _lineChartData[i].data[j] = Math.floor((Math.random() * 100) + 1);
+        _lineChartData[i].data[j] = Math.floor((Math.random() * 1000) + 1);
       }
     }
     this.lineChartData = _lineChartData;

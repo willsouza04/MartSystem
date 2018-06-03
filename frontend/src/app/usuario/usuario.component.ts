@@ -25,7 +25,7 @@ export class UsuarioComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.sessao.id = parseInt(this.router.url.split('/')[2]);
+    this.sessao.id = parseInt(this.router.url.split('/')[1]);
     this.limparSessoes();
   }
 

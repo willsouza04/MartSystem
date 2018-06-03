@@ -18,14 +18,13 @@ public class MercadoController {
 	// Url: api/mercado/save?id_login=1&id_endereco=1&cnpj=3165165&nome=UmNomeAi
 	@CrossOrigin(origins = "*")
 	@RequestMapping("api/mercado/save")
-	public String save(@RequestParam("id_login") Long id_login, @RequestParam("id_endereco") Long id_endereco, 
+	public Mercado save(@RequestParam("id_login") Long id_login, @RequestParam("id_endereco") Long id_endereco, 
 			@RequestParam("cnpj") String cnpj, @RequestParam("nome") String nome) {
 		try {
 			Mercado mercado = new Mercado(id_login, id_endereco, cnpj, nome);
-			mercadoRepository.save(mercado);
-			return "Done";
+			return mercadoRepository.save(mercado);
 		} catch (Exception error) {
-			return "Error";
+			return null;
 		}
 	}
 	

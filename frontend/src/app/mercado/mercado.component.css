@@ -101,10 +101,51 @@ body {padding-top:50px;}
 
 .endereco {
   text-decoration: none;
-  color: #666;
+  color: #778899;
   font-weight: bold;
   font-size: 32px;
   -webkit-transition: all 0.1s linear;
   -moz-transition: all 0.1s linear;
   transition: all 0.1s linear;
+}
+
+.titulos {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  font-size: 32px;
+  -webkit-transition: all 0.1s linear;
+  -moz-transition: all 0.1s linear;
+  transition: all 0.1s linear;
+}
+
+.panel {
+  margin: 5%;
+  background: transparent;
+}
+
+tr {
+  transition: all 0.5s;
+}
+
+tr:hover {
+  background-color: #4682B4;
+  transition: 0.5s;
+}
+
+.map-background {
+  height: 100%;
+  background: url(assets/map.png) no-repeat center;
+  background-size: cover;
+  opacity: 0.95;
+}
+
+.map{
+  height: 100%;
+  padding-top: 20px;
+  text-align: center;
+  width: 20%;
+  background-color: rgb(0,10,10,0.8);
+  color: #AAAAAA;
+  padding-top: 20px;
 }
